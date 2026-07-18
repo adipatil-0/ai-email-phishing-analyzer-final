@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: phishing-analyzer
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: VIRUSTOTAL_API_KEY
+        sync: false
+      - key: FLASK_SECRET_KEY
+        sync: false
+      # Ollama is local-only (needs a persistent daemon + RAM for model
+      # weights) — not viable on Render's free web tier. Groq is a hosted,
+      # genuinely free (no credit card) provider, so the AI layer stays ON
+      # in production instead of being disabled. Get a key at
+      # https://console.groq.com/keys
+      - key: AI_PROVIDER
+        value: "groq"
+      - key: GROQ_API_KEY
+        sync: false

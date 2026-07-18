@@ -1,0 +1,17 @@
+# Secrets — never commit real keys
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# SQLite DB (contains analyzed email data — don't commit test data either)
+*.db
+*.sqlite3
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+*.swp

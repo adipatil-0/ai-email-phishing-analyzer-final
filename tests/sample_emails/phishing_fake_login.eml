@@ -1,0 +1,28 @@
+Delivered-To: aditya@example.com
+Received: by 2002:a05:6902:9999::9 with SMTP id wxyz9999;
+        Fri, 10 Jul 2026 09:15:00 -0700 (PDT)
+Received-SPF: fail (google.com: domain of support@secure-login.com does not designate 185.220.101.35 as permitted sender) client-ip=185.220.101.35;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@secure-login.com header.s=default header.b=badSig123;
+       spf=fail (google.com: domain of support@secure-login.com does not designate 185.220.101.35 as permitted sender) smtp.mailfrom=support@secure-login.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=secure-login.com
+From: "Account Security Team" <support@secure-login.com>
+To: Aditya Patil <aditya@example.com>
+Subject: URGENT: Account Update Required - Immediate Action Needed
+Date: Fri, 10 Jul 2026 09:15:00 -0700
+Message-ID: <fake123@secure-login.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Dear user,
+
+We noticed unusual activity in your account. Your account will be
+suspended within 24 hours unless you verify your identity immediately.
+
+Click here to verify now: http://secure-login-verification.com/login
+Backup link: https://bit.ly/account-update
+Or visit directly: http://185.220.101.35/login
+
+Failure to act immediately will result in permanent account suspension.
+
+Regards,
+Security Team

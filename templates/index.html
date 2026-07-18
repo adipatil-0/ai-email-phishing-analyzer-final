@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Email Phishing Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Email Phishing Analyzer</h1>
+      <nav><a href="/history">History</a></nav>
+    </header>
+
+    <form method="POST" enctype="multipart/form-data" class="analyze-form">
+      <label>Paste email content:</label>
+      <textarea name="email_text" rows="8" placeholder="From: ...&#10;Subject: ...&#10;Body..."></textarea>
+
+      <label>OR upload .eml file:</label>
+      <input type="file" name="eml_file" accept=".eml">
+
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <div class="result verdict-{{ result.verdict.lower() }}">
+      <h2>Verdict: {{ result.verdict }}</h2>
+      <p>Final Score: {{ result.score }} / 100</p>
+      <p>Heuristic Score: {{ result.heuristic_score }} | AI Score: {{ result.ai_score }}</p>
+      {% if not result.ai_available %}
+      <p class="ai-disabled-notice">⚠ AI layer did not run — verdict based on heuristics + threat intel only (100% weight, not the usual 60/40 blend).</p>
+      {% endif %}
+
+      {% if result.triggered_indicators %}
+      <h3>Triggered Indicators</h3>
+      <ul>
+        {% for i in result.triggered_indicators %}
+        <li>{{ i }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <h3>AI Explanation</h3>
+      <p>{{ result.explanation }}</p>
+
+      {% if result.id %}
+      <a href="{{ url_for('download_report', record_id=result.id) }}" class="download-report-btn">Download PDF Report</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

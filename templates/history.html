@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analysis History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Analysis History</h1>
+      <nav><a href="/">New Analysis</a></nav>
+    </header>
+
+    <div class="stats-bar">
+      <span class="stat-total">Total: {{ stats.total }}</span>
+      <span class="stat-malicious">Malicious: {{ stats.malicious }}</span>
+      <span class="stat-suspicious">Suspicious: {{ stats.suspicious }}</span>
+      <span class="stat-clean">Clean: {{ stats.clean }}</span>
+    </div>
+
+    <form method="GET" action="/history" class="filter-bar">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search sender or subject..."
+        value="{{ search_query or '' }}"
+      >
+      <select name="verdict">
+        <option value="" {% if not verdict_filter %}selected{% endif %}>All Verdicts</option>
+        <option value="MALICIOUS" {% if verdict_filter == 'MALICIOUS' %}selected{% endif %}>Malicious</option>
+        <option value="SUSPICIOUS" {% if verdict_filter == 'SUSPICIOUS' %}selected{% endif %}>Suspicious</option>
+        <option value="CLEAN" {% if verdict_filter == 'CLEAN' %}selected{% endif %}>Clean</option>
+      </select>
+      <button type="submit">Filter</button>
+      {% if verdict_filter or search_query %}
+      <a href="/history" class="clear-filters">Clear</a>
+      {% endif %}
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sender</th><th>Subject</th><th>Score</th><th>Verdict</th><th>Date</th><th>Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r.sender or '-' }}</td>
+          <td>{{ r.subject or '-' }}</td>
+          <td>{{ r.final_score }}</td>
+          <td class="verdict-{{ r.verdict.lower() }}">{{ r.verdict }}</td>
+          <td>{{ r.analyzed_at }}</td>
+          <td><a href="{{ url_for('download_report', record_id=r.id) }}" class="report-link">PDF</a></td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="6" class="no-results">No matching records.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

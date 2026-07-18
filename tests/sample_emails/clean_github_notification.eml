@@ -1,0 +1,26 @@
+Delivered-To: aditya@example.com
+Received: by 2002:a05:6902:1234::1 with SMTP id abcd1234;
+        Fri, 10 Jul 2026 08:00:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of notifications@github.com designates 192.30.252.1 as permitted sender) client-ip=192.30.252.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=s20180312 header.b=abcXYZ123;
+       spf=pass (google.com: domain of notifications@github.com designates 192.30.252.1 as permitted sender) smtp.mailfrom=notifications@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com; s=s20180312;
+        h=from:to:subject:date; bh=abc123==; b=xyz789==
+From: GitHub <notifications@github.com>
+To: Aditya Patil <aditya@example.com>
+Subject: [adipatil-0/ai-email-phishing-analyzer] Your workflow run succeeded
+Date: Fri, 10 Jul 2026 08:00:00 -0700
+Message-ID: <abc123@github.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Aditya,
+
+Your workflow run for ai-email-phishing-analyzer completed successfully
+on branch main. No action needed.
+
+View the run: https://github.com/adipatil-0/ai-email-phishing-analyzer/actions/runs/123456
+
+Thanks,
+The GitHub Team

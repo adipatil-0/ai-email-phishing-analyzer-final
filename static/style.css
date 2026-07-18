@@ -1,0 +1,176 @@
+:root {
+  --orange: #f97316;
+  --orange-dark: #c2410c;
+  --bg: #fafafa;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --text: #1f2937;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+header h1 { color: var(--orange-dark); font-size: 1.5rem; }
+header a { color: var(--orange-dark); text-decoration: none; font-weight: 600; }
+
+.analyze-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea, input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-family: Consolas, monospace;
+  box-sizing: border-box;
+}
+
+button {
+  background: var(--orange);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+button:hover { background: var(--orange-dark); }
+
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.verdict-malicious { border-left: 5px solid #dc2626; }
+.verdict-suspicious { border-left: 5px solid var(--orange); }
+.verdict-clean { border-left: 5px solid #16a34a; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+th { color: var(--orange-dark); }
+
+/* Day 6: history filter/search/stats */
+.stats-bar {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.stat-malicious { color: #dc2626; }
+.stat-suspicious { color: var(--orange-dark); }
+.stat-clean { color: #16a34a; }
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-bar input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.filter-bar select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.filter-bar button {
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filter-bar button:hover { background: var(--orange-dark); }
+
+.clear-filters {
+  align-self: center;
+  color: var(--orange-dark);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.no-results {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
+}
+
+/* Day 7: PDF report export */
+.download-report-btn {
+  display: inline-block;
+  margin-top: 14px;
+  background: var(--orange);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 6px;
+}
+
+.download-report-btn:hover { background: var(--orange-dark); }
+
+.report-link {
+  color: var(--orange-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.report-link:hover { text-decoration: underline; }
